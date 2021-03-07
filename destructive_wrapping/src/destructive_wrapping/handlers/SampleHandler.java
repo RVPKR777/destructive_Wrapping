@@ -11,11 +11,17 @@ public class SampleHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-		MessageDialog.openInformation(
-				window.getShell(),
-				"Destructive_wrapping",
-				"Hello, Eclipse world");
+		IWorkspace workspace = ResorcesPlugin.getWorkspace();
+		IWorkspaceRoot root = workspace.getRoot();
+		IProject[] projects = root.getProjects();
+		for(IProject project : projects) {
+			try {
+				
+			}
+			catch(CoreException e){
+				e.printStackTrace();
+			}
+		}
 		return null;
 	}
 }

@@ -11,9 +11,10 @@ import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jdt.core.dom.AST;
+import org.eclipse.jdt.core.dom.ASTParser;
+import org.eclipse.jdt.core.dom.CatchClause;
+import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.core.resources.ResourcesPlugin;
 
 public class SampleHandler extends AbstractHandler {
@@ -39,9 +40,33 @@ public class SampleHandler extends AbstractHandler {
 		IPackageFragment[] packages = JavaCore.create(project).getPackageFragments();
 		for(IPackageFragment mypackage : packages) {
 			for(ICompilationUnit unit : mypackage.getCompilationUnits()) {
-				
+				CompilationUnit parsedCompilationUnit = parse(unit);
+				CatchClauseVisitor exceptionVisitor = new CatchClauseVisitor();
+				parsedCompilationUnit.accept(exceptionVisitor);
+				printExceptions(exceptionVisitor);
 			}
 		}
 		
+	}
+	
+	
+	private void printExceptions(CatchClauseVisitor visitor) {
+		System.out.println("__________________EMPTY CATCHES___________________");
+		for(CatchClause statement: visitor.getdwoccurences()) {
+			System.out.println(statement.toString());
+		}
+		
+		
+	}
+	
+	
+	private CompilationUnit parse(ICompilationUnit unit) {
+		ASTParser parser = ASTParser.newParser(AST.JLS15);
+		parser.setKind(ASTParser.K_COMPILATION_UNIT);
+		parser.setSource(unit);
+		parser.setResolveBindings(true);
+		parser.setBindingsRecovery(true);
+		parser.setStatementsRecovery(true);
+		return (CompilationUnit) parser.createAST(null); // parse
 	}
 }

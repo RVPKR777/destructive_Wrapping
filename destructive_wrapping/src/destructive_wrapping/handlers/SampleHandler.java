@@ -18,6 +18,9 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.core.resources.ResourcesPlugin;
 
 public class SampleHandler extends AbstractHandler {
+	
+	CatchClauseVisitor count = new CatchClauseVisitor();
+	//int count = 0;
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
@@ -25,7 +28,9 @@ public class SampleHandler extends AbstractHandler {
 		IProject[] projects = root.getProjects();
 		for(IProject project : projects) {
 			try {
+				System.out.println("Finding destructive exceptions in " + project.toString());
 				Destructive_catcher(project);
+				//System.out.println(count.getdwoccurencescount());
 			}
 			catch(CoreException e){
 				e.printStackTrace();
@@ -42,7 +47,9 @@ public class SampleHandler extends AbstractHandler {
 				CompilationUnit parsedCompilationUnit = parse(unit);
 				CatchClauseVisitor exceptionVisitor = new CatchClauseVisitor();
 				parsedCompilationUnit.accept(exceptionVisitor);
+				
 				printExceptions(exceptionVisitor);
+				
 			}
 		}
 		
@@ -50,9 +57,14 @@ public class SampleHandler extends AbstractHandler {
 	
 	
 	private void printExceptions(CatchClauseVisitor visitor) {
+		//int count = 0;
+		//System.out.println("*************************************************************");
 		for(CatchClause statement: visitor.getdwoccurences()) {
+			System.out.println("*************************************************************");
 			System.out.println(statement.toString());
+			//System.out.println(visitor.getdwoccurencescount());
 		}
+		//System.out.println(count.getdwoccurencescount());
 		
 		
 	}
@@ -65,6 +77,6 @@ public class SampleHandler extends AbstractHandler {
 		parser.setResolveBindings(true);
 		parser.setBindingsRecovery(true);
 		parser.setStatementsRecovery(true);
-		return (CompilationUnit) parser.createAST(null); // parse
+		return (CompilationUnit) parser.createAST(null);
 	}
 }

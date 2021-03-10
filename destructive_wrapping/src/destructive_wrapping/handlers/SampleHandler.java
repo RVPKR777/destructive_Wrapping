@@ -19,7 +19,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
 
 public class SampleHandler extends AbstractHandler {
 
-	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IWorkspaceRoot root = workspace.getRoot();
@@ -51,7 +50,6 @@ public class SampleHandler extends AbstractHandler {
 	
 	
 	private void printExceptions(CatchClauseVisitor visitor) {
-		System.out.println("__________________EMPTY CATCHES___________________");
 		for(CatchClause statement: visitor.getdwoccurences()) {
 			System.out.println(statement.toString());
 		}

@@ -1,6 +1,7 @@
 package destructive_wrapping.handlers;
 
 import java.util.HashSet;
+import java.util.List;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CatchClause;
@@ -18,7 +19,15 @@ public class CatchClauseVisitor extends ASTVisitor {
 	
 	
 	private boolean isDestructive(CatchClause node) {
-		return node.getBody().statements().toString().contains("throw new");
+		//return node.getBody().statements().toString().contains("throw new");
+		String statementsload = node.getBody().statements().toString();
+		if(statementsload.contains("throw new")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		 
 	}
 	
 	

@@ -29,7 +29,6 @@ public class SampleHandler extends AbstractHandler {
 	
 	//CatchClauseVisitor count = new CatchClauseVisitor();
 	int count = 0;
-	int projectcount = 0;
 
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -75,7 +74,6 @@ public class SampleHandler extends AbstractHandler {
 		//System.out.println("*************************************************************");
 		for(CatchClause statement: visitor.getdwoccurences()) {
 			System.out.println("*************************************************************\n");
-			System.out.println("In File : " );
 			System.out.println(statement.toString());
 			
 		}

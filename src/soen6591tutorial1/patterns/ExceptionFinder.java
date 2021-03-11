@@ -44,7 +44,7 @@ public class ExceptionFinder {
 			String classname = unit.getElementName();
 			String classpathstring = unit.findPrimaryType().toString();
 			String[] cc = classpathstring.split("]]]");
-			String classpath = cc[0].replace("in", "").replace(" ", "").replace("[", "||");
+			String classpath = cc[0].replace("in", "").replace(" ", "").replace("[", " <- ");
 			//System.out.println(cc[0]);
 			//String classpathstring = unit.getSource().toString();
 			//var array = classpathstring.split('\n',1)[0];
@@ -56,8 +56,8 @@ public class ExceptionFinder {
 	
 	public void printdetails(String catchclause, String classname, Integer line, String classpath) {
 		//SampleHandler.printMessage("Class Name :"+ classname);
-		SampleHandler.printMessage("Class Path :"+ classpath);
-		SampleHandler.printMessage("Line Number :"+ line);
+		SampleHandler.printMessage("Trace : "+ classpath);
+		SampleHandler.printMessage("Line Number : "+ line);
 		SampleHandler.printMessage(catchclause);
 	}
 	

@@ -12,3 +12,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.text;bundle-version="3.16.500"
 Automatic-Module-Name: destructive.wrapping
 Bundle-RequiredExecutionEnvironment: JavaSE-15
+Import-Package: org.eclipse.ui.console

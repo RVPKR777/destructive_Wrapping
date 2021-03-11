@@ -26,16 +26,16 @@ public class CatchClauseVisitor extends ASTVisitor {
 	
 	
 	private boolean isDestructive(CatchClause node) {
-		return node.getBody().statements().toString().contains("throw new");
-		//String statementsload = node.getBody().statements().toString();
+		//return node.getBody().statements().toString().contains("throw new");
+		String statementsload = node.getBody().statements().toString();
 		//System.out.println(node.getE);
 	
-		/*if(statementsload.contains("throw new")) {
+		if(statementsload.contains("throw new")) {
 			return true;
 		}
 		else {
 			return false;
-		} */
+		} 
 		 
 	}
 	

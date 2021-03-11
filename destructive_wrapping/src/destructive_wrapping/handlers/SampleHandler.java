@@ -15,12 +15,22 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CatchClause;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.ui.console.ConsolePlugin;
+import org.eclipse.ui.console.IConsole;
+import org.eclipse.ui.console.IConsoleManager;
+import org.eclipse.ui.console.MessageConsole;
+import org.eclipse.ui.console.MessageConsoleStream;
+
+
+
 import org.eclipse.core.resources.ResourcesPlugin;
 
 public class SampleHandler extends AbstractHandler {
 	
-	CatchClauseVisitor count = new CatchClauseVisitor();
-	//int count = 0;
+	//CatchClauseVisitor count = new CatchClauseVisitor();
+	int count = 0;
+	int projectcount = 0;
+
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
@@ -36,6 +46,11 @@ public class SampleHandler extends AbstractHandler {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("****Summary****");
+		System.out.println("Project : "+ root.getName().toString());
+		System.out.println("Destructive Wrapping : " + count);
+		count = 0;
+		
 		return null;
 	}
 	
@@ -47,7 +62,6 @@ public class SampleHandler extends AbstractHandler {
 				CompilationUnit parsedCompilationUnit = parse(unit);
 				CatchClauseVisitor exceptionVisitor = new CatchClauseVisitor();
 				parsedCompilationUnit.accept(exceptionVisitor);
-				
 				printExceptions(exceptionVisitor);
 				
 			}
@@ -60,10 +74,14 @@ public class SampleHandler extends AbstractHandler {
 		//int count = 0;
 		//System.out.println("*************************************************************");
 		for(CatchClause statement: visitor.getdwoccurences()) {
-			System.out.println("*************************************************************");
+			System.out.println("*************************************************************\n");
+			System.out.println("In File : " );
 			System.out.println(statement.toString());
-			//System.out.println(visitor.getdwoccurencescount());
+			
 		}
+		count = count + visitor.getdwoccurences().size();
+		//projectcount = visitor.getdwoccurences().size();
+		//System.out.println(visitor.getdwoccurences().size());
 		//System.out.println(count.getdwoccurencescount());
 		
 		

@@ -5,26 +5,26 @@
    <extension
          point="org.eclipse.ui.commands">
       <category
-            id="destructive_wrapping.commands.category"
+            id="soen6591tutorial1.commands.category"
             name="Sample Category">
       </category>
       <command
-            categoryId="destructive_wrapping.commands.category"
+            categoryId="soen6591tutorial1.commands.category"
             name="Sample Command"
-            id="destructive_wrapping.commands.sampleCommand">
+            id="soen6591tutorial1.commands.sampleCommand">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="destructive_wrapping.handlers.SampleHandler"
-            commandId="destructive_wrapping.commands.sampleCommand">
+            class="soen6591tutorial1.handlers.SampleHandler"
+            commandId="soen6591tutorial1.commands.sampleCommand">
       </handler>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
       <key
-            commandId="destructive_wrapping.commands.sampleCommand"
+            commandId="soen6591tutorial1.commands.sampleCommand"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             contextId="org.eclipse.ui.contexts.window"
             sequence="M1+6">
@@ -35,12 +35,12 @@
       <menuContribution
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
-               id="destructive_wrapping.menus.sampleMenu"
+               id="soen6591tutorial1.menus.sampleMenu"
                label="Sample Menu"
                mnemonic="M">
             <command
-                  commandId="destructive_wrapping.commands.sampleCommand"
-                  id="destructive_wrapping.menus.sampleCommand"
+                  commandId="soen6591tutorial1.commands.sampleCommand"
+                  id="soen6591tutorial1.menus.sampleCommand"
                   mnemonic="S">
             </command>
          </menu>
@@ -48,10 +48,10 @@
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
          <toolbar
-               id="destructive_wrapping.toolbars.sampleToolbar">
+               id="soen6591tutorial1.toolbars.sampleToolbar">
             <command
-                  id="destructive_wrapping.toolbars.sampleCommand"
-                  commandId="destructive_wrapping.commands.sampleCommand"
+                  id="soen6591tutorial1.toolbars.sampleCommand"
+                  commandId="soen6591tutorial1.commands.sampleCommand"
                   icon="icons/sample.png"
                   tooltip="Say hello world">
             </command>

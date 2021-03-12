@@ -10,7 +10,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jdt.core.JavaModelException;
 
 import soen6591tutorial1.patterns.ExceptionFinder;
-import soen6591tutorial1.patterns.MethodFinder;
+
 
 public class DetectException extends AbstractHandler {
 
@@ -33,14 +33,10 @@ public class DetectException extends AbstractHandler {
 		for(IProject project : projects) {
 			SampleHandler.printMessage("DETECTING IN: " + project.getName());
 			ExceptionFinder exceptionFinder = new ExceptionFinder();
-			MethodFinder methodFinder = new MethodFinder();
+			
 			
 			try {
 				
-				// 1. find how many methods
-				methodFinder.findMethods(project);
-				
-				// 2. find destructive wrapping
 				exceptionFinder.findExceptions(project);
 				
 			} catch (JavaModelException e) {

@@ -18,7 +18,7 @@ public class DetectException extends AbstractHandler {
 	public Object execute(ExecutionEvent arg0) throws ExecutionException {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IWorkspaceRoot root = workspace.getRoot();
-		System.out.println("root: " + root.getLocation().toOSString());
+		SampleHandler.printMessage("root: " + root.getLocation().toOSString());
 		IProject[] projects = root.getProjects();
 		
 		

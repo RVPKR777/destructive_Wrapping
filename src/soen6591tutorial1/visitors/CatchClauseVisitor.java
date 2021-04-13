@@ -18,19 +18,15 @@ public class CatchClauseVisitor extends ASTVisitor {
 	@Override
 	public boolean visit(CatchClause node) {
 		
-		if(isEmptyException(node)) {
+		if(isDestructiveException(node)) {
 			emptyCatches.add(node);
 			
-		}
-
-		if(isGenericException(node)){
-			genericCatches.add(node);
 		}
 		
 		return super.visit(node);
 	}
 	
-	private boolean isEmptyException(CatchClause node) {
+	private boolean isDestructiveException(CatchClause node) {
 		
 		return node.getBody().statements().toString().contains("throw new");	
 	}
